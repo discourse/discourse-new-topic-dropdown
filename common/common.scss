@@ -1,0 +1,12 @@
+.navigation-controls {
+  #create-topic {
+    display: none;
+  }
+}
+
+// optionally hide receipients, unless staff member
+@if $hide_pm_recipients == "true" {
+  body:not(.staff) .composer-fields .user-selector {
+    display: none !important;
+  }
+}

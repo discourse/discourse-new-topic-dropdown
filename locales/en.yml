@@ -1,0 +1,9 @@
+en:
+  theme_metadata:
+    description: "Turns the New Topic button into a dropdown with a custom option added"
+  custom_topic_dropdown:
+    parent_button: "New Topic"
+    new_topic_option: "New Topic"
+    new_topic_description: "Start a public discussion"
+    custom_option: "Hidden Topic"
+    custom_description: "Start a private discussion"
