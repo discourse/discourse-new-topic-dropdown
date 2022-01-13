@@ -29,7 +29,7 @@ pm_recipients:
 
 hide_pm_recipients:
   type: bool
-  default: true
+  default: false
   description: hides recipients from PM composer, unless user is a staff member
 
 custom_option_tags:
