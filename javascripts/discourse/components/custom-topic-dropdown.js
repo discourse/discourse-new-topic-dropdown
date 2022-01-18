@@ -1,11 +1,13 @@
 import { action } from "@ember/object";
-import { getOwner } from "discourse-common/lib/get-owner";
+import { alias } from "@ember/object/computed";
 import Composer from "discourse/models/composer";
-import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
 import { computed } from "@ember/object";
+import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
+import { getOwner } from "discourse-common/lib/get-owner";
 
 export default DropdownSelectBoxComponent.extend({
   classNames: ["custom-topic-dropdown"],
+  pmTaggingEnabled: alias("site.can_tag_pms"),
 
   selectKitOptions: {
     icons: [settings.parent_button_icon],
@@ -44,31 +46,42 @@ export default DropdownSelectBoxComponent.extend({
   onChange(selectedAction) {
     const composerController = getOwner(this).lookup("controller:composer");
 
-    let action;
-    let recipients;
-    let tags;
+    let composerOptions = {};
+
+    let action = Composer.CREATE_TOPIC;
     let categoryId = this.category ? this.category.id : null;
+    let draftKey = Composer.DRAFT;
+    let tags;
 
     if (selectedAction === "new_custom") {
       action = settings.custom_option_action;
-      recipients = settings.pm_recipients.replace(/\|/g, ", ");
-      tags = settings.custom_option_tags
-        ? settings.custom_option_tags.replace(/\|/g, ", ")
-        : null;
-
-      if (settings.custom_option_category != 0) {
-        categoryId = settings.custom_option_category;
+      if (settings.custom_option_action === "createTopic") {
+        if (settings.custom_option_category > 0) {
+          categoryId = settings.custom_option_category;
+        }
+        tags = settings.custom_option_tags
+          ? settings.custom_option_tags.replace(/\|/g, ", ")
+          : null;
       }
-    } else {
-      action = Composer.CREATE_TOPIC;
+      if (settings.custom_option_action === "privateMessage") {
+        draftKey = Composer.NEW_PRIVATE_MESSAGE_KEY;
+        composerOptions["recipients"] = settings.pm_recipients.replace(
+          /\|/g,
+          ", "
+        );
+        composerOptions["archetypeId"] = "private_message";
+
+        if (this.pmTaggingEnabled === false) {
+          tags = null;
+        }
+      }
     }
 
-    composerController.open({
-      action: action,
-      draftKey: Composer.DRAFT,
-      categoryId: categoryId,
-      recipients: recipients,
-      tags: tags,
-    });
+    composerOptions["categoryId"] = categoryId;
+    composerOptions["draftKey"] = draftKey;
+    composerOptions["action"] = action;
+    composerOptions["tags"] = tags;
+
+    composerController.open(composerOptions);
   },
 });
