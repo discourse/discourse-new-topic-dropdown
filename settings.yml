@@ -47,6 +47,10 @@ hijack_pm_toggle:
   default: false
   description: will override composer PM toggle to always fill recipients from "pm_recipients" setting
 
+composer_pm_toggle:
+  default: false
+  description: shows a PM toggle in the composer's menu
+
 svg_icons:
   default: ""
   type: "list"
