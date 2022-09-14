@@ -50,7 +50,7 @@ export default {
             if (!this.get("currentUser.staff")) {
               usernames = settings.pm_recipients
                 ? settings.pm_recipients.replace(/\|/g, ", ")
-                : "null";
+                : null;
             }
 
             options.action = "privateMessage";
