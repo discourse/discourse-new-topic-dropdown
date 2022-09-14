@@ -1,31 +1,31 @@
 parent_button_icon:
   type: string
-  default: 'plus'
+  default: "plus"
   description: |
     <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&m=free">FontAwesome</a> icon name...
 
 new_topic_icon:
   type: string
-  default: 'comment'
+  default: "comment"
   description: |
     <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&m=free">FontAwesome</a> icon name...
 
 custom_option_icon:
   type: string
-  default: 'envelope'
+  default: "envelope"
   description: |
     <a target="_blank" href="https://fontawesome.com/v5.15/icons?d=gallery&m=free">FontAwesome</a> icon name...
 
 custom_option_action:
   type: enum
-  default: 'privateMessage'
+  default: "privateMessage"
   choices:
-    - 'privateMessage'
-    - 'createTopic'
+    - "privateMessage"
+    - "createTopic"
 
 pm_recipients:
   type: list
-  default: 'moderators'
+  default: "moderators"
 
 hide_pm_recipients:
   type: bool
@@ -34,7 +34,7 @@ hide_pm_recipients:
 
 custom_option_tags:
   type: list
-  default: ''
+  default: ""
 
 custom_option_category:
   type: integer
@@ -52,7 +52,7 @@ composer_pm_toggle:
   description: shows a PM toggle in the composer's menu
 
 svg_icons:
-  default: ''
-  type: 'list'
-  list_type: 'compact'
+  default: ""
+  type: "list"
+  list_type: "compact"
   description: Used for adding Font Awesome icons that aren't already part of Discourse's subset
