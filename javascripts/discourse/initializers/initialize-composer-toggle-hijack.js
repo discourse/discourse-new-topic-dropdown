@@ -21,6 +21,7 @@ export default {
     if (settings.hijack_pm_toggle) {
       withPluginApi("0.8.14", (api) => {
         api.modifyClass("component:composer-actions", {
+          pluginId: "new-topic-dropdown",
           replyAsPrivateMessageSelected(options) {
             let usernames;
             let _postSnapshot;
@@ -67,6 +68,8 @@ export default {
     if (settings.composer_pm_toggle) {
       withPluginApi("0.8.14", (api) => {
         api.modifyClass("component:composer-actions", {
+          pluginId: "new-topic-dropdown",
+
           @discourseComputed("seq")
           content() {
             let items = [];

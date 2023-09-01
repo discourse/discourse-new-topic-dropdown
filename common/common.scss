@@ -9,4 +9,20 @@
   body:not(.staff) .composer-fields .user-selector {
     display: none !important;
   }
+
+  // hide user messages page default PM button, unless staff
+  body:not(.staff) {
+    .user-main {
+      .new-private-message {
+        display: none;
+      }
+    }
+  }
+
+  // hide user messages page custom PM button for staff
+  body.staff {
+    .custom-new-private-message {
+      display: none;
+    }
+  }
 }
