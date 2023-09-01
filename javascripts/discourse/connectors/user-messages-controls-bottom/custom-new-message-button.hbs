@@ -1,0 +1,10 @@
+{{#if (theme-setting "pm_recipients")}}
+  {{#if this.showNewPM}}
+    <DButton
+      @class="btn-primary custom-new-private-message"
+      @action={{this.customCreateNewMessage}}
+      @icon="envelope"
+      @label="user.new_private_message"
+    />
+  {{/if}}
+{{/if}}
