@@ -1,9 +1,9 @@
-import { action } from "@ember/object";
+import { action, computed } from "@ember/object";
 import { alias } from "@ember/object/computed";
 import Composer from "discourse/models/composer";
-import { computed } from "@ember/object";
-import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
 import { getOwner } from "discourse-common/lib/get-owner";
+import I18n from "discourse-i18n";
+import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
 
 export default DropdownSelectBoxComponent.extend({
   classNames: ["custom-topic-dropdown"],
@@ -48,13 +48,13 @@ export default DropdownSelectBoxComponent.extend({
 
     let composerOptions = {};
 
-    let action = Composer.CREATE_TOPIC;
+    let theAction = Composer.CREATE_TOPIC;
     let categoryId = this.category ? this.category.id : null;
     let draftKey = Composer.DRAFT;
     let tags;
 
     if (selectedAction === "new_custom") {
-      action = settings.custom_option_action;
+      theAction = settings.custom_option_action;
       if (settings.custom_option_action === "createTopic") {
         if (settings.custom_option_category > 0) {
           categoryId = settings.custom_option_category;
@@ -79,7 +79,7 @@ export default DropdownSelectBoxComponent.extend({
 
     composerOptions["categoryId"] = categoryId;
     composerOptions["draftKey"] = draftKey;
-    composerOptions["action"] = action;
+    composerOptions["action"] = theAction;
     composerOptions["tags"] = tags;
 
     composerController.open(composerOptions);

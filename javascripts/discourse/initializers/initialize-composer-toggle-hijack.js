@@ -1,18 +1,16 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import discourseComputed from "discourse-common/utils/decorators";
-
 import {
   CREATE_SHARED_DRAFT,
   CREATE_TOPIC,
-  EDIT,
   PRIVATE_MESSAGE,
   REPLY,
 } from "discourse/models/composer";
+import discourseComputed from "discourse-common/utils/decorators";
+import I18n from "discourse-i18n";
 
 // Component can get destroyed and lose state
 let _topicSnapshot = null;
 let _postSnapshot = null;
-let _actionSnapshot = null;
 
 export default {
   name: "toggle-hijack",
@@ -24,8 +22,6 @@ export default {
           pluginId: "new-topic-dropdown",
           replyAsPrivateMessageSelected(options) {
             let usernames;
-            let _postSnapshot;
-            let _topicSnapshot;
 
             if (this.post && this.topic) {
               _postSnapshot = this.post;
