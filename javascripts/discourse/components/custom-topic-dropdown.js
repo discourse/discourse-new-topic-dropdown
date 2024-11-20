@@ -44,7 +44,7 @@ export default DropdownSelectBoxComponent.extend({
 
   @action
   onChange(selectedAction) {
-    const composerController = getOwner(this).lookup("controller:composer");
+    const composerController = getOwner(this).lookup("service:composer");
 
     let composerOptions = {};
 
