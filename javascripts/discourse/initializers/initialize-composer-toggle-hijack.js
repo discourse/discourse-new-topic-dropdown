@@ -1,3 +1,4 @@
+import discourseComputed from "discourse/lib/decorators";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import {
   CREATE_SHARED_DRAFT,
@@ -5,8 +6,7 @@ import {
   PRIVATE_MESSAGE,
   REPLY,
 } from "discourse/models/composer";
-import discourseComputed from "discourse-common/utils/decorators";
-import I18n from "discourse-i18n";
+import { i18n } from "discourse-i18n";
 
 // Component can get destroyed and lose state
 let _topicSnapshot = null;
@@ -81,10 +81,10 @@ export default {
               _topicSnapshot
             ) {
               items.push({
-                name: I18n.t(
+                name: i18n(
                   "composer.composer_actions.reply_as_new_group_message.label"
                 ),
-                description: I18n.t(
+                description: i18n(
                   "composer.composer_actions.reply_as_new_group_message.desc"
                 ),
                 icon: "plus",
@@ -102,10 +102,10 @@ export default {
               _topicSnapshot
             ) {
               items.push({
-                name: I18n.t(
+                name: i18n(
                   "composer.composer_actions.reply_as_new_topic.label"
                 ),
-                description: I18n.t(
+                description: i18n(
                   "composer.composer_actions.reply_as_new_topic.desc"
                 ),
                 icon: "plus",
@@ -120,10 +120,10 @@ export default {
                 !(this.replyOptions.userAvatar && this.replyOptions.userLink))
             ) {
               items.push({
-                name: I18n.t("composer.composer_actions.reply_to_post.label", {
+                name: i18n("composer.composer_actions.reply_to_post.label", {
                   postUsername: _postSnapshot.username,
                 }),
-                description: I18n.t(
+                description: i18n(
                   "composer.composer_actions.reply_to_post.desc"
                 ),
                 icon: "share",
@@ -137,12 +137,12 @@ export default {
               !this.isEditing
             ) {
               items.push({
-                name: I18n.t(
+                name: i18n(
                   themePrefix(
                     "custom_composer_actions.reply_as_private_message.label"
                   )
                 ),
-                description: I18n.t(
+                description: i18n(
                   themePrefix(
                     "custom_composer_actions.reply_as_private_message.desc"
                   )
@@ -162,8 +162,8 @@ export default {
                   this.replyOptions.topicLink))
             ) {
               items.push({
-                name: I18n.t("composer.composer_actions.reply_to_topic.label"),
-                description: I18n.t(
+                name: i18n("composer.composer_actions.reply_to_topic.label"),
+                description: i18n(
                   "composer.composer_actions.reply_to_topic.desc"
                 ),
                 icon: "share",
@@ -179,8 +179,8 @@ export default {
                 _postSnapshot.post_type !== this.site.post_types.whisper)
             ) {
               items.push({
-                name: I18n.t("composer.composer_actions.toggle_whisper.label"),
-                description: I18n.t(
+                name: i18n("composer.composer_actions.toggle_whisper.label"),
+                description: i18n(
                   "composer.composer_actions.toggle_whisper.desc"
                 ),
                 icon: "far-eye-slash",
@@ -192,8 +192,8 @@ export default {
               if (this.site.shared_drafts_category_id) {
                 // Shared Drafts Choice
                 items.push({
-                  name: I18n.t("composer.composer_actions.shared_draft.label"),
-                  description: I18n.t(
+                  name: i18n("composer.composer_actions.shared_draft.label"),
+                  description: i18n(
                     "composer.composer_actions.shared_draft.desc"
                   ),
                   icon: "far-clipboard",
@@ -208,10 +208,8 @@ export default {
 
             if (this.action === REPLY && showToggleTopicBump) {
               items.push({
-                name: I18n.t(
-                  "composer.composer_actions.toggle_topic_bump.label"
-                ),
-                description: I18n.t(
+                name: i18n("composer.composer_actions.toggle_topic_bump.label"),
+                description: i18n(
                   "composer.composer_actions.toggle_topic_bump.desc"
                 ),
                 icon: "anchor",
@@ -221,8 +219,8 @@ export default {
 
             if (items.length === 0) {
               items.push({
-                name: I18n.t("composer.composer_actions.create_topic.label"),
-                description: I18n.t(
+                name: i18n("composer.composer_actions.create_topic.label"),
+                description: i18n(
                   "composer.composer_actions.reply_as_new_topic.desc"
                 ),
                 icon: "share",

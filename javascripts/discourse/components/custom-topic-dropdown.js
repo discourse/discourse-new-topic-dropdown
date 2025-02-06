@@ -1,8 +1,8 @@
 import { action, computed } from "@ember/object";
 import { alias } from "@ember/object/computed";
+import { getOwner } from "discourse/lib/get-owner";
 import Composer from "discourse/models/composer";
-import { getOwner } from "discourse-common/lib/get-owner";
-import I18n from "discourse-i18n";
+import { i18n } from "discourse-i18n";
 import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
 
 export default DropdownSelectBoxComponent.extend({
@@ -22,8 +22,8 @@ export default DropdownSelectBoxComponent.extend({
     const items = [
       {
         id: "new_discussion",
-        name: I18n.t(themePrefix("custom_topic_dropdown.new_topic_option")),
-        description: I18n.t(
+        name: i18n(themePrefix("custom_topic_dropdown.new_topic_option")),
+        description: i18n(
           themePrefix("custom_topic_dropdown.new_topic_description")
         ),
         icon: settings.new_topic_icon,
@@ -32,8 +32,8 @@ export default DropdownSelectBoxComponent.extend({
 
     items.push({
       id: "new_custom",
-      name: I18n.t(themePrefix("custom_topic_dropdown.custom_option")),
-      description: I18n.t(
+      name: i18n(themePrefix("custom_topic_dropdown.custom_option")),
+      description: i18n(
         themePrefix("custom_topic_dropdown.custom_description")
       ),
       icon: settings.custom_option_icon,
