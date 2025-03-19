@@ -1,24 +1,28 @@
-import { action, computed } from "@ember/object";
+import { action } from "@ember/object";
 import { alias } from "@ember/object/computed";
-import { getOwner } from "discourse/lib/get-owner";
+import { service } from "@ember/service";
+import { classNames } from "@ember-decorators/component";
 import Composer from "discourse/models/composer";
 import { i18n } from "discourse-i18n";
 import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
+import { selectKitOptions } from "select-kit/components/select-kit";
 
-export default DropdownSelectBoxComponent.extend({
-  classNames: ["custom-topic-dropdown"],
-  pmTaggingEnabled: alias("site.can_tag_pms"),
+@selectKitOptions({
+  icons: [settings.parent_button_icon],
+  showFullTitle: true,
+  autoFilterable: false,
+  filterable: false,
+  showCaret: true,
+  none: themePrefix("custom_topic_dropdown.parent_button"),
+})
+@classNames("custom-topic-dropdown")
+export default class CustomTopicDropdown extends DropdownSelectBoxComponent {
+  @service composer;
+  @service site;
 
-  selectKitOptions: {
-    icons: [settings.parent_button_icon],
-    showFullTitle: true,
-    autoFilterable: false,
-    filterable: false,
-    showCaret: true,
-    none: themePrefix("custom_topic_dropdown.parent_button"),
-  },
+  @alias("site.can_tag_pms") pmTaggingEnabled;
 
-  content: computed(function () {
+  get content() {
     const items = [
       {
         id: "new_discussion",
@@ -40,14 +44,11 @@ export default DropdownSelectBoxComponent.extend({
     });
 
     return items;
-  }),
+  }
 
   @action
   onChange(selectedAction) {
-    const composerController = getOwner(this).lookup("service:composer");
-
     let composerOptions = {};
-
     let theAction = Composer.CREATE_TOPIC;
     let categoryId = this.category ? this.category.id : null;
     let draftKey = Composer.DRAFT;
@@ -82,6 +83,6 @@ export default DropdownSelectBoxComponent.extend({
     composerOptions["action"] = theAction;
     composerOptions["tags"] = tags;
 
-    composerController.open(composerOptions);
-  },
-});
+    this.composer.open(composerOptions);
+  }
+}

@@ -5,6 +5,7 @@ import Composer from "discourse/models/composer";
 
 export default class CustomNewMessageButton extends Component {
   @service composer;
+
   showNewPM = this.args.outletArgs.showNewPM;
 
   @action
