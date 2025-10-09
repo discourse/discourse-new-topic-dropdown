@@ -17,7 +17,7 @@ export default {
 
   initialize() {
     if (settings.hijack_pm_toggle) {
-      withPluginApi("0.8.14", (api) => {
+      withPluginApi((api) => {
         api.modifyClass("component:composer-actions", {
           pluginId: "new-topic-dropdown",
           replyAsPrivateMessageSelected(options) {
@@ -62,7 +62,7 @@ export default {
     }
 
     if (settings.composer_pm_toggle) {
-      withPluginApi("0.8.14", (api) => {
+      withPluginApi((api) => {
         api.modifyClass(
           "component:composer-actions",
           (Superclass) =>
