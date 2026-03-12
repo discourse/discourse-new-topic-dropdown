@@ -3,9 +3,9 @@ import { alias } from "@ember/object/computed";
 import { service } from "@ember/service";
 import { classNames } from "@ember-decorators/component";
 import Composer from "discourse/models/composer";
+import DropdownSelectBoxComponent from "discourse/select-kit/components/dropdown-select-box";
+import { selectKitOptions } from "discourse/select-kit/components/select-kit";
 import { i18n } from "discourse-i18n";
-import DropdownSelectBoxComponent from "select-kit/components/dropdown-select-box";
-import { selectKitOptions } from "select-kit/components/select-kit";
 
 @selectKitOptions({
   icons: [settings.parent_button_icon],

@@ -1,4 +1,4 @@
-import discourseComputed from "discourse/lib/decorators";
+import { computed } from "@ember/object";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import {
   CREATE_SHARED_DRAFT,
@@ -67,8 +67,8 @@ export default {
           "component:composer-actions",
           (Superclass) =>
             class extends Superclass {
-              @discourseComputed("seq")
-              content() {
+              @computed("seq")
+              get content() {
                 let items = [];
 
                 if (
