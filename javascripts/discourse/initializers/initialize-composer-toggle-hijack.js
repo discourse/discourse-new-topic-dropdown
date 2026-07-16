@@ -37,7 +37,7 @@ export default {
               const stream = this.get("composerModel.topic.postStream");
 
               if (stream.get("firstPostPresent")) {
-                const post = stream.get("posts.firstObject");
+                const post = stream.get("posts")?.[0];
                 if (post && !post.get("yours") && post.get("username")) {
                   usernames = post.get("username");
                 }
