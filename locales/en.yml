@@ -1,6 +1,15 @@
 en:
   theme_metadata:
     description: "Turns the New Topic button into a dropdown with a custom option added"
+    settings:
+      parent_button_icon: '<a target="_blank" href="https://fontawesome.com/v6/search?o=r&m=free">FontAwesome</a> icon name...'
+      new_topic_icon: '<a target="_blank" href="https://fontawesome.com/v6/search?o=r&m=free">FontAwesome</a> icon name...'
+      custom_option_icon: '<a target="_blank" href="https://fontawesome.com/v6/search?o=r&m=free">FontAwesome</a> icon name...'
+      hide_pm_recipients: "hides recipients from PM composer, unless user is a staff member"
+      custom_option_category: "accepts a category id; you can find the category id by looking for the number in the URL when you navigate to a category's topic list"
+      hijack_pm_toggle: 'will override composer PM toggle to always fill recipients from "pm_recipients" setting'
+      composer_pm_toggle: "shows a PM toggle in the composer's menu"
+      svg_icons: "Used for adding Font Awesome icons that aren't already part of Discourse's subset"
   custom_topic_dropdown:
     parent_button: "New Topic"
     new_topic_option: "New Topic"
